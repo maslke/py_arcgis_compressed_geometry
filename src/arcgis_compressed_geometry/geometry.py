@@ -1,6 +1,11 @@
-from typing import List, Sequence
+from typing import List, Tuple, Sequence, Union
 
 COMRESSED_GEOMETRY_PREFIX = "+0+1+"
+
+POINT_XY = Tuple[float, float]
+POINT_XYZ = Tuple[float, float, float]
+POINT_XYM = Tuple[float, float, float]
+POINT_XYZM = Tuple[float, float, float, float]
 
 
 def decode(geometry: str) -> List[List[float]]:
@@ -22,9 +27,16 @@ def decode(geometry: str) -> List[List[float]]:
         m_part = parts[1] if int(flag) == 2 else None
         (z_part, m_part) = (parts[1], parts[2]) if int(flag) == 3 else (z_part, m_part)
         return _decode(xy_part, z_part, m_part)
-    
+
+
 def encode(
-    coordinates: List[List[float]],
+    coordinates: Union[
+        List[List[float]],
+        List[POINT_XY],
+        List[POINT_XYZ],
+        List[POINT_XYM],
+        List[POINT_XYZM],
+    ],
     coordinate_format="xy",
     xy_factor=10000,
     z_factor=None,
@@ -61,6 +73,7 @@ def encode(
     flag = z_flag | m_flag
     return f"{COMRESSED_GEOMETRY_PREFIX}{flag}{xy_geometry}{z_geometry}{m_geometry}"
 
+
 def _extract(part: str) -> List[str]:
     result = []
     current = ""
@@ -92,7 +105,17 @@ def _decode(xy_part: str, z_part=None, m_part=None) -> List[List[float]]:
         return [xy + [m] for xy, m in zip(coordinates_xy, _decode_m(m_part))]
     return coordinates_xy
 
-def _encode_xy(coordinates: List[List[float]], factor=10000) -> str:
+
+def _encode_xy(
+    coordinates: Union[
+        List[List[float]],
+        List[POINT_XY],
+        List[POINT_XYZ],
+        List[POINT_XYM],
+        List[POINT_XYZM],
+    ],
+    factor=10000,
+) -> str:
     result = []
     first_x = int(coordinates[0][0] * factor)
     first_y = int(coordinates[0][1] * factor)

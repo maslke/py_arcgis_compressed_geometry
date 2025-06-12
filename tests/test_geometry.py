@@ -1,4 +1,3 @@
-import pytest
 from src.arcgis_compressed_geometry.geometry import decode, encode
 
 
@@ -143,6 +142,14 @@ def test_encode_when_has_m_and_no_z():
     ]
     geometry = encode(coordinates, "xym", xy_factor=55585, m_factor=6000)
     assert geometry == "+0+1+2+1m91-6733n+1pjfe+g-e+1b-r+9-9|+5rg+81s+7n+i0+4f"
+    coordinates = [
+        (-117.37020778987137, 33.96106863362418, 1.3753333333333333),
+        (-117.36991994243051, 33.96081676711343, 1.4165),
+        (-117.3691463524332, 33.960331024556986, 1.5125),
+        (-117.36898443824772, 33.9601691103715, 1.5363333333333333),
+    ]
+    geometry = encode(coordinates, "xym", xy_factor=55585, m_factor=6000)
+    assert geometry == "+0+1+2+1m91-6733n+1pjfe+g-e+1b-r+9-9|+5rg+81s+7n+i0+4f"
 
 
 def test_encode_when_has_m_and_has_z():
@@ -151,6 +158,16 @@ def test_encode_when_has_m_and_has_z():
         [481904.0, 3768566.0, 2.25, 0.30983333333333335],
         [481904.0, 3768567.0, 2.25, 0.36816666666666664],
         [481901.0, 3768566.0, 4.5, 0.5721666666666667],
+    ]
+    geometry = encode(coordinates, "xyzm", 1, z_factor=10000, m_factor=6000)
+    assert (
+        geometry == "+0+1+3+1+emjd+3j07m+3+0+0+1-3-1|+9og+0+lv4+0+lv4|+5rg+uq+r9+au+168"
+    )
+    coordinates = [
+        (481901.0, 3768566.0, 0, 0.16433333333333333),
+        (481904.0, 3768566.0, 2.25, 0.30983333333333335),
+        (481904.0, 3768567.0, 2.25, 0.36816666666666664),
+        (481901.0, 3768566.0, 4.5, 0.5721666666666667),
     ]
     geometry = encode(coordinates, "xyzm", 1, z_factor=10000, m_factor=6000)
     assert (
