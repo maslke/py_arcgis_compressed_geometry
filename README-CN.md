@@ -12,3 +12,9 @@
 - xyzm (带高程和测量值的坐标)
 
 ## 安装
+
+可以通过如下指令通过pip来安装：
+
+```shell
+pip install arcgis-compressed-geometry==0.0.1
+```

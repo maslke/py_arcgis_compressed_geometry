@@ -12,3 +12,8 @@ This library provides encoding and decoding functionality for ArcGIS Compressed 
 - xyzm (coordinates with elevation and measure values)
 
 ## Installation
+You can install the package using pip:
+
+```shell
+pip install arcgis-compressed-geometry==0.0.1
+```
