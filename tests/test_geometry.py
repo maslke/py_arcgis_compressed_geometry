@@ -61,7 +61,9 @@ def test_decode_when_has_z_and_no_m():
 
 def test_decode_when_has_m_and_no_z():
     points = decode(
-        "+0+1+2+1m91-6733n+1pjfe+g-e+1b-r+9-9+c-h+2-j-3-v-7-j-b-m-5-7-e-f-1a-u-6-7-4-9-3-a-1-n+1-4j|+5rg+81s+7n+i0+4f+7r+7g+ce+7n+9j+3h+7n+ib+3a+3q+45+97+1qs"
+        "+0+1+2+1m91-6733n+1pjfe+g-e+1b-r+9-9+c-h+2-j-3-v-7-j-b-m-5-7-e-f-1a-u"
+        "-6-7-4-9-3-a-1-n+1-4j|+5rg+81s+7n+i0+4f+7r+7g+ce+7n+9j+3h+7n+ib+3a+3q"
+        "+45+97+1qs"
     )
     assert points is not None
     assert len(points) == 17
@@ -161,7 +163,8 @@ def test_encode_when_has_m_and_has_z():
     ]
     geometry = encode(coordinates, "xyzm", 1, z_factor=10000, m_factor=6000)
     assert (
-        geometry == "+0+1+3+1+emjd+3j07m+3+0+0+1-3-1|+9og+0+lv4+0+lv4|+5rg+uq+r9+au+168"
+        geometry
+        == "+0+1+3+1+emjd+3j07m+3+0+0+1-3-1|+9og+0+lv4+0+lv4|+5rg+uq+r9+au+168"
     )
     coordinates = [
         (481901.0, 3768566.0, 0, 0.16433333333333333),
@@ -171,5 +174,6 @@ def test_encode_when_has_m_and_has_z():
     ]
     geometry = encode(coordinates, "xyzm", 1, z_factor=10000, m_factor=6000)
     assert (
-        geometry == "+0+1+3+1+emjd+3j07m+3+0+0+1-3-1|+9og+0+lv4+0+lv4|+5rg+uq+r9+au+168"
+        geometry
+        == "+0+1+3+1+emjd+3j07m+3+0+0+1-3-1|+9og+0+lv4+0+lv4|+5rg+uq+r9+au+168"
     )

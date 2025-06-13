@@ -12,8 +12,10 @@ def decode(geometry: str) -> List[List[float]]:
     """
     Decode a polyline string into a set of coordinates.
 
-    :param geometry: ArcGIS Compressed Geometry string, e.g. '+1m91-6fkfr+202tp+k+f+7+3+34+2d'.
-    :return: List of coordinate lists, supports [x, z],[x,y,z],[x,y,m],[x,y,z,m].
+    :param geometry: ArcGIS Compressed Geometry string, e.g.
+        '+1m91-6fkfr+202tp+k+f+7+3+34+2d'.
+    :return: List of coordinate lists, supports
+        [x, z],[x,y,z],[x,y,m],[x,y,z,m].
     """
     parts: Sequence[str] = geometry.split("|")
     first: str = parts[0]
@@ -25,7 +27,9 @@ def decode(geometry: str) -> List[List[float]]:
         xy_part = first[6:]
         z_part = parts[1] if int(flag) == 1 else None
         m_part = parts[1] if int(flag) == 2 else None
-        (z_part, m_part) = (parts[1], parts[2]) if int(flag) == 3 else (z_part, m_part)
+        (z_part, m_part) = (
+            (parts[1], parts[2]) if int(flag) == 3 else (z_part, m_part)
+        )
         return _decode(xy_part, z_part, m_part)
 
 
@@ -46,7 +50,8 @@ def encode(
     Encode a set of coordinates in ArcGIS Compressed Geometry string.
 
     :param coordinates: List of coordinate lists.
-    :param coordinate_format: format of coordinate, supports "xy","xyz","xym","xyzm"
+    :param coordinate_format: format of coordinate, supports
+        "xy","xyz","xym","xyzm"
     :param xy_factor factor for xy coordinate
     :param z_factor factor for z coordinate
     :param m_factor factor for m coordinate
@@ -71,7 +76,10 @@ def encode(
     z_flag = 1 if z_geometry else 0
     m_flag = 2 if m_geometry else 0
     flag = z_flag | m_flag
-    return f"{COMRESSED_GEOMETRY_PREFIX}{flag}{xy_geometry}{z_geometry}{m_geometry}"
+    return (
+        f"{COMRESSED_GEOMETRY_PREFIX}{flag}"
+        f"{xy_geometry}{z_geometry}{m_geometry}"
+    )
 
 
 def _extract(part: str) -> List[str]:
@@ -97,7 +105,9 @@ def _decode(xy_part: str, z_part=None, m_part=None) -> List[List[float]]:
     if z_part and m_part:
         return [
             xy + list(zm)
-            for xy, zm in zip(coordinates_xy, zip(_decode_z(z_part), _decode_z(m_part)))
+            for xy, zm in zip(
+                coordinates_xy, zip(_decode_z(z_part), _decode_z(m_part))
+            )
         ]
     elif z_part:
         return [xy + [z] for xy, z in zip(coordinates_xy, _decode_z(z_part))]
