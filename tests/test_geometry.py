@@ -1,4 +1,4 @@
-from src.arcgis_compressed_geometry.geometry import decode, encode
+from arcgis_compressed_geometry import decode, encode
 
 
 def test_decode_when_no_z_and_no_m():
