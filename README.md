@@ -19,7 +19,7 @@ This library provides encoding and decoding functionality for ArcGIS Compressed 
 You can install the package using pip:
 
 ```shell
-pip install arcgis-compressed-geometry==0.0.1
+pip install arcgis-compressed-geometry
 ```
 
 ## How to use
@@ -48,7 +48,9 @@ coordinates = [
 from arcgis_compressed_geometry import decode
 
 points = decode(
-        "+0+1+2+1m91-6733n+1pjfe+g-e+1b-r+9-9+c-h+2-j-3-v-7-j-b-m-5-7-e-f-1a-u-6-7-4-9-3-a-1-n+1-4j|+5rg+81s+7n+i0+4f+7r+7g+ce+7n+9j+3h+7n+ib+3a+3q+45+97+1qs"
+        "+0+1+2+1m91-6733n+1pjfe+g-e+1b-r+9-9+c-h+2-j-3-v-7-j-b-m-5-7-e-f-1a-u"
+        "-6-7-4-9-3-a-1-n+1-4j|+5rg+81s+7n+i0+4f+7r+7g+ce+7n+9j+3h+7n+ib+3a+3q"
+        "+45+97+1qs"
     )
 
 ```
