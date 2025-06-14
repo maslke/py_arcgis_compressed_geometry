@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PyPI version](https://badge.fury.io/py/arcgis-compressed-geometry.svg)](https://badge.fury.io/py/arcgis-compressed-geometry)
 [![Tests](https://github.com/maslke/py_arcgis_compressed_geometry/actions/workflows/tests.yml/badge.svg)](https://github.com/maslke/py_arcgis_compressed_geometry/actions/workflows/tests.yml)
-[![codecov](https://codecov.io/gh/maslke/py_arcgis_compressed_geometry/graph/badge.svg?token=8GWDG6CGQ0)](https://codecov.io/gh/maslke/py_arcgis_compressed_geometry)
+[![codecov](https://codecov.io/gh/maslke/py_arcgis_compressed_geometry/branch/master/graph/badge.svg?token=8GWDG6CGQ0)](https://codecov.io/gh/maslke/py_arcgis_compressed_geometry)
 
 A Python library for encoding and decoding ArcGIS Compressed Geometry Format.
 
